@@ -11,14 +11,31 @@ export function MessageBubble({ message }: MessageBubbleProps) {
   return (
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-4`}>
       <div
-        className={`max-w-[80%] rounded-2xl px-5 py-3 ${
+        className="max-w-[80%] rounded-2xl px-5 py-3 transition-all duration-200"
+        style={
           isUser
-            ? 'bg-blue-600 text-white'
-            : 'bg-white border border-gray-200 text-gray-800'
-        }`}
+            ? {
+                backgroundColor: 'var(--color-primary)',
+                color: 'white',
+                borderBottomRightRadius: '4px',
+              }
+            : {
+                backgroundColor: 'var(--color-surface)',
+                border: '1px solid var(--color-border)',
+                borderLeft: '3px solid var(--color-primary)',
+                color: 'var(--color-text)',
+                borderBottomLeftRadius: '4px',
+              }
+        }
       >
         {message.agentName && !isUser && (
-          <span className="inline-block text-xs font-medium bg-blue-100 text-blue-700 rounded-full px-2 py-0.5 mb-2">
+          <span
+            className="inline-block text-xs font-medium rounded-full px-2.5 py-0.5 mb-2"
+            style={{
+              backgroundColor: 'var(--color-primary-light)',
+              color: 'var(--color-primary-dark)',
+            }}
+          >
             {message.agentName}
           </span>
         )}
@@ -30,9 +47,8 @@ export function MessageBubble({ message }: MessageBubbleProps) {
           )}
         </div>
         <p
-          className={`text-xs mt-2 ${
-            isUser ? 'text-blue-200' : 'text-gray-400'
-          }`}
+          className="text-xs mt-2"
+          style={{ color: isUser ? 'rgba(255,255,255,0.6)' : 'var(--color-text-secondary)', opacity: 0.7 }}
         >
           {message.timestamp.toLocaleTimeString([], {
             hour: '2-digit',

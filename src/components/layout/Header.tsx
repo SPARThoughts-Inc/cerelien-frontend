@@ -4,16 +4,47 @@ import { logout } from '../../services/firebase'
 export function Header() {
   const { user } = useAuth()
 
+  const initial = user?.email ? user.email.charAt(0).toUpperCase() : '?'
+
   return (
-    <header className="h-16 flex items-center justify-between px-6 bg-white border-b border-gray-200">
-      <h1 className="text-xl font-bold text-gray-900">Cerelien AI</h1>
+    <header
+      className="h-16 flex items-center justify-between px-6"
+      style={{
+        backgroundColor: 'var(--color-surface)',
+        borderBottom: '1px solid var(--color-border)',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
+      }}
+    >
+      <h1
+        className="text-lg font-bold"
+        style={{ fontFamily: "'DM Serif Display', Georgia, serif", color: 'var(--color-text)' }}
+      >
+        Cerelien AI
+      </h1>
       <div className="flex items-center gap-4">
         {user?.email && (
-          <span className="text-base text-gray-600">{user.email}</span>
+          <div className="flex items-center gap-3">
+            <div
+              className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold"
+              style={{ backgroundColor: 'var(--color-primary-light)', color: 'var(--color-primary-dark)' }}
+            >
+              {initial}
+            </div>
+            <span className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>{user.email}</span>
+          </div>
         )}
         <button
           onClick={() => void logout()}
-          className="px-4 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition"
+          className="px-3 py-1.5 text-sm font-medium rounded-lg transition-all duration-200"
+          style={{ color: 'var(--color-text-secondary)' }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = 'var(--color-bg)'
+            e.currentTarget.style.color = 'var(--color-text)'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = 'transparent'
+            e.currentTarget.style.color = 'var(--color-text-secondary)'
+          }}
         >
           Sign out
         </button>
