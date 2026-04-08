@@ -5,7 +5,7 @@ import { PatientDashboard } from './components/dashboard/PatientDashboard'
 import { ChatWindow } from './components/chat/ChatWindow'
 import { VoiceCallPanel } from './components/voice/VoiceCallPanel'
 
-const DEMO_PATIENT_ID = 'demo-patient-001'
+const DEMO_PATIENT_ID = '1'
 
 function AppContent() {
   const [activePath, setActivePath] = useState('/dashboard')

@@ -9,7 +9,7 @@ export interface ChatMessage {
   timestamp: Date
 }
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL ?? ''
+const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
 
 export function useChat(patientId: string) {
   const [messages, setMessages] = useState<ChatMessage[]>([])
